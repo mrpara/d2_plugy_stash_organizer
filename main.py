@@ -187,6 +187,7 @@ def to_groups(item_list, config):
     groups.append(runes)
     groups.append(charms)
     groups.append(jewels)
+    groups.append(ubers)
     groups.append(essences)
     groups.append(bases)
     groups.append(runewords)
