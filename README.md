@@ -1,6 +1,6 @@
 # Plugy Stash Organizer
 ## What is it?
-As the name implies, this is a python script to organize your PlugY stashes. You can load either a shared (.sss) or personal (.d2x) stash file, and the script will more-or-less-neatly organize the stash.
+As the name implies, this is a python script to organize your PlugY 11.02 stashes. You can load either a shared (.sss) or personal (.d2x) stash file, and the script will more-or-less-neatly organize the stash.
 ## How do I use it?
 Simply run the main.py file. A dialog box should pop up prompting you for the stash file. Point it to the stash file you want to organize, and click OK. Assuming the script doesn't throw any errors, you're done.
 ## What settings can I tweak?
@@ -17,3 +17,9 @@ I tried to make the script readable and fairly easy to modify. Do as you please 
 No can do. The script doesn't parse anything beyond the most basic item data. It would be far too much work to do so, and I have no interest in doing it. Either keep some manually sorted pages using the IgnoreFirstXPages setting, or modify the code yourself.
 ## I want the script to tell me which grail items I'm missing!
 See above.
+## Will it work with other versions of PlugY? 
+I don't know. It will most likely work with older versions, but I have not tested it.
+## Will it work with [some mod]?
+If the mod adds items, then the item data (code, type, size) will need to be added to item_data.py. It will probably work if the mod does not change how the game handles item data, but I offer no guarantees or support.
+## I'm getting a key error while running the script!
+Unfortunately it seems like the references I used for item codes are not entirely accurate. If you come across a key error, most likely one of the item codes is wrong. Try googling the item code and seeing which item it belongs to, and then change the appropriate code in item_data.py. Please let me know if you encounter this, and I will update the repo.
