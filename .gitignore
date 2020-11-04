@@ -209,3 +209,8 @@ log.txt
 log.txt
 *.ini
 Settings.ini
+prod/bit_utils.py
+prod/item.py
+prod/item_data.py
+prod/main.py
+prod/page.py
