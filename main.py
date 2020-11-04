@@ -268,7 +268,7 @@ def backup_stash(stash_file_path, config):
 def main():
     # Read config
     config = configparser.ConfigParser()
-    config.read("Settings.ini")
+    config.read("settings.ini")
 
     # Get stash file from user
     stash_file_path = filedialog.askopenfilename(title="Select shared stash file",
