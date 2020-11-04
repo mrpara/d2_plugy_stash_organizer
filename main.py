@@ -266,6 +266,8 @@ def backup_stash(stash_file_path, config):
 
 
 def main():
+    #TODO sort by item level
+
     # Read config
     config = configparser.ConfigParser()
     config.read("settings.ini")

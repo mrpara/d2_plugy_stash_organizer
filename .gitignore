@@ -205,3 +205,5 @@ fabric.properties
 log.txt
 log.txt
 log.txt
+*.ini
+Settings.ini
