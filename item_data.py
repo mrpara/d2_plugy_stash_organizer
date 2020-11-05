@@ -571,7 +571,7 @@ item_data['7wb'] = ItemTypeData(1, 3, ItemGroup.ASN)   # Wrist Sword
 item_data['7xf'] = ItemTypeData(1, 3, ItemGroup.ASN)   # War Fist
 item_data['7cs'] = ItemTypeData(1, 3, ItemGroup.ASN)   # Battle Cestus
 item_data['7lw'] = ItemTypeData(1, 3, ItemGroup.ASN)   # Feral Claws
-item_data['7hw'] = ItemTypeData(1, 3, ItemGroup.ASN)   # Runic Talons
+item_data['7tw'] = ItemTypeData(1, 3, ItemGroup.ASN)   # Runic Talons
 item_data['7qr'] = ItemTypeData(1, 3, ItemGroup.ASN)   # Scissors Suwayh
 # SORC
 item_data['ob1'] = ItemTypeData(1, 2, ItemGroup.SORC)   # Eagle Orb
