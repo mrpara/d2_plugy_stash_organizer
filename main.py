@@ -143,6 +143,8 @@ def to_groups(item_list, config):
             runes.append(item)
         elif item.group in [ItemGroup.UBERKEY, ItemGroup.UBERPART]:
             ubers.append(item)
+        elif item.group == ItemGroup.MISC:
+            misc.append(item)
         elif item.rarity == Rarity.SET:
             if item.set_id in sets:
                 sets[item.set_id].append(item)
@@ -161,7 +163,7 @@ def to_groups(item_list, config):
             gems.append(item)
         elif item.rarity == Rarity.UNIQ:
             uniques.append(item)
-        else:
+        else:  # Catch-all for items which don't fall into one of the other categories and aren't explicitly misc
             misc.append(item)
 
     # Sort each group internally, according to its own criteria. Uniques are sorted by type (helms, gloves, etc) and
