@@ -254,7 +254,7 @@ def make_stash(path, header, ver, gold, new_pages, ignored_pages):
                 f.write(b'ST\x01\x00\x00\x00\x00JM')
             if header == b'CSTM':  # For personal stashes, keep all flags turned off
                 f.write(b'ST\x00\x00\x00\x00\x00JM')
-            # IF USING OLDER VERSIONS OF PLUGY, COMMENT OR DELETE THE LINES ABOVE AND UNCOMMENT THE LINE BELOW
+            # IF USING OLDER VERSIONS OF PLUGY, COMMENT OR DELETE THE 4 LINES ABOVE AND UNCOMMENT THE LINE BELOW
             # f.write(b'ST\x00JM')
             f.write(write_bits(b'\x00\x00', 0, 16, page.num_items()))
             for item in page.items:
