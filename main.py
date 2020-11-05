@@ -243,7 +243,7 @@ def make_stash(path, header, ver, gold, new_pages, ignored_pages):
         # method by feeding it some 4-byte string and having it rewrite it, since it already handles the endian issues
         f.write(write_bits(b'\x00\x00\x00\x00', 0, 32, len(new_pages)))
 
-       # Write each ignored page back into the stash, unmodified from its original form
+        # Write each ignored page back into the stash, unmodified from its original form
         for page in ignored_pages:
             f.write(page)
 
