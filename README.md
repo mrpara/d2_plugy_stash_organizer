@@ -18,7 +18,7 @@ No can do. The script doesn't parse anything beyond the most basic item data. It
 ## I want the script to tell me which grail items I'm missing!
 See above.
 ## Will it work with other versions of PlugY? 
-I don't know. It will most likely work with older versions, but I have not tested it.
+It will most likely *not* work with older versions, as v11.02 introduced some new flags, but it may be possible to make it work. Try commenting out lines 253-256 and uncommenting line 258 in main.py. If anyone tries this, send me a message so I know if it works and I will update accordingly.
 ## Will it work with [some mod]?
 If the mod adds items, then the item data (code, type, size) will need to be added to item_data.py. It will probably work if the mod does not change how the game handles item data, but I offer no guarantees or support.
 ## I'm getting a key error while running the script!
