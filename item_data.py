@@ -738,11 +738,12 @@ item_data['tsc'] = ItemTypeData(1, 1, ItemGroup.SCROLL)   # Town Portal Scroll
 item_data['tbk'] = ItemTypeData(1, 2, ItemGroup.SCROLL)   # Tome of Town Portal
 item_data['ibk'] = ItemTypeData(1, 2, ItemGroup.SCROLL)   # Tome of Identify
 # MISC
-item_data['aqv'] = ItemTypeData(1, 3, ItemGroup.BODY)   # Arrows
-item_data['cqv'] = ItemTypeData(1, 3, ItemGroup.BODY)   # Bolts
-item_data['key'] = ItemTypeData(1, 1, ItemGroup.BODY)   # Key
-item_data['gld'] = ItemTypeData(1, 1, ItemGroup.BODY)   # gold
-item_data['ear'] = ItemTypeData(1, 1, ItemGroup.BODY)   # Ear
+item_data['aqv'] = ItemTypeData(1, 3, ItemGroup.MISC)   # Arrows
+item_data['cqv'] = ItemTypeData(1, 3, ItemGroup.MISC)   # Bolts
+item_data['key'] = ItemTypeData(1, 1, ItemGroup.MISC)   # Key
+item_data['gld'] = ItemTypeData(1, 1, ItemGroup.MISC)   # gold
+item_data['ear'] = ItemTypeData(1, 1, ItemGroup.MISC)   # Ear
+item_data['std'] = ItemTypeData(1, 1, ItemGroup.MISC)   # Standard of Heroes
 # JEWEL
 item_data['jew'] = ItemTypeData(1, 1, ItemGroup.JEWEL)   # Jewel
 # AMULET
