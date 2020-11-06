@@ -154,7 +154,7 @@ def to_groups(item_list, config):
             rings_ammies.append(item)
         elif item.group == ItemGroup.ESSENCE:
             essences.append(item)
-        elif item.rarity in (Rarity.LOW_QUALITY, Rarity.NORMAL, Rarity.HIGH_QUALITY) and not item.is_simple:
+        elif item.rarity in [Rarity.LOW_QUALITY, Rarity.NORMAL, Rarity.HIGH_QUALITY] and not item.simple:
             bases.append(item)
         elif item.group == ItemGroup.CHARM:
             charms.append(item)
