@@ -744,7 +744,7 @@ item_data['key'] = ItemTypeData(1, 1, ItemGroup.MISC)   # Key
 item_data['gld'] = ItemTypeData(1, 1, ItemGroup.MISC)   # gold
 item_data['ear'] = ItemTypeData(1, 1, ItemGroup.MISC)   # Ear
 item_data['std'] = ItemTypeData(1, 1, ItemGroup.MISC)   # Standard of Heroes
-item_size['aqv'] = ItemTypeData(1, 3, ItemGroup.MISC)   # Arrows
+item_size['toa'] = ItemTypeData(1, 1, ItemGroup.MISC)   # Token of Absolution
 # JEWEL
 item_data['jew'] = ItemTypeData(1, 1, ItemGroup.JEWEL)   # Jewel
 # AMULET
