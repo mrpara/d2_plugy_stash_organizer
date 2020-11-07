@@ -744,7 +744,6 @@ item_data['key'] = ItemTypeData(1, 1, ItemGroup.MISC)   # Key
 item_data['gld'] = ItemTypeData(1, 1, ItemGroup.MISC)   # gold
 item_data['ear'] = ItemTypeData(1, 1, ItemGroup.MISC)   # Ear
 item_data['std'] = ItemTypeData(1, 1, ItemGroup.MISC)   # Standard of Heroes
-item_size['toa'] = ItemTypeData(1, 1, ItemGroup.MISC)   # Token of Absolution
 # JEWEL
 item_data['jew'] = ItemTypeData(1, 1, ItemGroup.JEWEL)   # Jewel
 # AMULET
@@ -764,6 +763,7 @@ item_data['bet'] = ItemTypeData(1, 1, ItemGroup.ESSENCE)   # Burning Essence of 
 item_data['ceh'] = ItemTypeData(1, 1, ItemGroup.ESSENCE)   # Charged Essence of Hatred
 item_data['fed'] = ItemTypeData(1, 1, ItemGroup.ESSENCE)   # Festering Essence of Destruction
 item_data['tes'] = ItemTypeData(1, 1, ItemGroup.ESSENCE)   # Twisted Essence of Suffering
+item_size['toa'] = ItemTypeData(1, 1, ItemGroup.ESSENCE)   # Token of Absolution
 
 
 # ITEM SET DATA
