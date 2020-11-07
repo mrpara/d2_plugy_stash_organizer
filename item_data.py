@@ -763,7 +763,7 @@ item_data['bet'] = ItemTypeData(1, 1, ItemGroup.ESSENCE)   # Burning Essence of 
 item_data['ceh'] = ItemTypeData(1, 1, ItemGroup.ESSENCE)   # Charged Essence of Hatred
 item_data['fed'] = ItemTypeData(1, 1, ItemGroup.ESSENCE)   # Festering Essence of Destruction
 item_data['tes'] = ItemTypeData(1, 1, ItemGroup.ESSENCE)   # Twisted Essence of Suffering
-item_size['toa'] = ItemTypeData(1, 1, ItemGroup.ESSENCE)   # Token of Absolution
+item_data['toa'] = ItemTypeData(1, 1, ItemGroup.ESSENCE)   # Token of Absolution
 
 
 # ITEM SET DATA
