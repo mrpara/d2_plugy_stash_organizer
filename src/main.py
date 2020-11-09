@@ -204,7 +204,26 @@ def to_groups(item_list, config):
     else:
         for item_set in sets:
             groups.append(sets[item_set])
-    groups.append(uniques)
+    
+    if config["SETTINGS"]["UnifyUniques"] == '1':
+        groups.append(uniques)
+    else:
+        unique_groups = []
+        for unique in uniques:
+            if len(unique_groups) == 0:
+                unique_group = []
+                unique_group.append(unique)
+                unique_groups.append(unique_group)
+            else:
+                prev_group = unique_groups[len(unique_groups) - 1]
+                if unique.code == prev_group[0].code:
+                    unique_groups[len(unique_groups) - 1].append(unique)
+                else:
+                    unique_group = []
+                    unique_group.append(unique)
+                    unique_groups.append(unique_group)
+        for unique_group in unique_groups:
+            groups.append(unique_group)
     groups.append(misc)
 
     # Finally, remove any empty groups to avoid having empty stash pages
