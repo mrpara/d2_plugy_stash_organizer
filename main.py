@@ -114,12 +114,37 @@ def parse_stash_data(stash_data, config):
     return pages_to_ignore, items
 
 
+def add_to_group(group, item, key=None):
+    # Add item to list or appropriate subgroup of dictionary
+    if isinstance(group, list):
+        group.append(item)
+    if isinstance(group, dict):
+        if key in group:
+            group[key].append(item)
+        else:
+            group[key] = [item]
+
+
+def append_supergroup_flat(groups, supergroup):
+    # Used to "flatten"/"unify" supergroups (sets, uniques) and then append to groups structure
+    flat_group = []
+    for item in supergroup:
+        flat_group.extend(supergroup[item])
+    groups.append(flat_group)
+
+
+def append_supergroup(groups, supergroup):
+    # Used to append each item in supergroup to groups
+    for item in supergroup:
+        groups.append(supergroup[item])
+
+
 def to_groups(item_list, config):
     # Sort the items into groups. Each group is sorted internally with some criteria, and different groups will never
     # be on the same stash page.
 
     # The groups:
-    sets = {}  # Note that sets are the exception here as they contain subgroups (the sets) while the other groups don't
+    sets = {}  # Note that sets and uniques are the exception here. They contain subgroups while the other groups don't
     uniques = {}
     runewords = []
     runes = []
@@ -136,38 +161,32 @@ def to_groups(item_list, config):
     # want anni/torches to be sorted with the charms, the charm group condition must come before the "unique" condition
     for item in item_list:
         if item.rw:
-            runewords.append(item)
+            add_to_group(runewords, item)
         elif item.group == ItemGroup.JEWEL:
-            jewels.append(item)
+            add_to_group(jewels, item)
         elif item.group == ItemGroup.RUNE:
-            runes.append(item)
+            add_to_group(runes, item)
         elif item.group in [ItemGroup.UBERKEY, ItemGroup.UBERPART]:
-            ubers.append(item)
+            add_to_group(ubers, item)
         elif item.group == ItemGroup.MISC:
-            misc.append(item)
+            add_to_group(misc, item)
         elif item.rarity == Rarity.SET:
-            if item.set_id in sets:
-                sets[item.set_id].append(item)
-            else:
-                sets[item.set_id] = [item]
+            add_to_group(sets, item, item.set_id)
         elif item.group in [ItemGroup.AMULET, ItemGroup.RING]:
-            rings_ammies.append(item)
+            add_to_group(rings_ammies, item)
         elif item.group == ItemGroup.ESSENCE:
-            essences.append(item)
+            add_to_group(essences, item)
         elif item.rarity in [Rarity.LOW_QUALITY, Rarity.NORMAL, Rarity.HIGH_QUALITY] and not item.simple:
-            bases.append(item)
+            add_to_group(bases, item)
         elif item.group == ItemGroup.CHARM:
-            charms.append(item)
+            add_to_group(charms, item)
         elif item.group in [ItemGroup.GEM_CHIP, ItemGroup.GEM_FLAWED, ItemGroup.GEM_NORM,
                             ItemGroup.GEM_FLAWLESS, ItemGroup.GEM_PERFECT]:
-            gems.append(item)
+            add_to_group(gems, item)
         elif item.rarity == Rarity.UNIQ:
-            if item.group in uniques:
-                uniques[item.group].append(item)
-            else:
-                uniques[item.group] = [item]
+            add_to_group(uniques, item, item.group)
         else:  # Catch-all for items which don't fall into one of the other categories and aren't explicitly misc
-            misc.append(item)
+            add_to_group(misc, item)
 
     # Sort each group internally, according to its own criteria. Uniques are sorted by type (helms, gloves, etc) and
     # then by item code (grim helm, winged helm, etc). Jewels are sorted by rarity. Modify this as you see fit.
@@ -201,21 +220,13 @@ def to_groups(item_list, config):
     if config["SETTINGS"]["UnifySets"] == '1':  # For set items, check config. If UnifySets is active then all set items
         # are unified into one supergroup, meaning different sets can appear on the same stash page. Otherwise, treat
         # each set as a different group with its own page.
-        sets_supergroup = []
-        for item_set in sets:
-            sets_supergroup.extend(sets[item_set])
-        groups.append(sets_supergroup)
+        append_supergroup_flat(groups, sets)
     else:
-        for item_set in sets:
-            groups.append(sets[item_set])
-    if config["SETTINGS"]["UnifyUniques"] == '1':
-        uniques_supergroup = []
-        for item_unique in uniques:
-            uniques_supergroup.extend(uniques[item_unique])
-        groups.append(uniques_supergroup)
+        append_supergroup(groups, sets)
+    if config["SETTINGS"]["UnifyUniques"] == '1':  # Similarly for uniques
+        append_supergroup_flat(groups, uniques)
     else:
-        for item_unique in uniques:
-            groups.append(uniques[item_unique])
+        append_supergroup(groups, uniques)
     groups.append(misc)
 
     # Finally, remove any empty groups to avoid having empty stash pages
