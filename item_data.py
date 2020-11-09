@@ -351,7 +351,7 @@ item_data['7sp'] = ItemTypeData(1, 3, ItemGroup.MACE)   # Tyrant Club
 item_data['7ma'] = ItemTypeData(1, 3, ItemGroup.MACE)   # Reinforced Mace
 item_data['7mt'] = ItemTypeData(1, 3, ItemGroup.MACE)   # Devil Star
 item_data['7fl'] = ItemTypeData(2, 3, ItemGroup.MACE)   # Scourge
-item_data['7wh'] = ItemTypeData(2, 3, ItemGroup.MACE)   # Legendary Mallt
+item_data['7wh'] = ItemTypeData(2, 3, ItemGroup.MACE)   # Legendary Mallet
 item_data['7m7'] = ItemTypeData(2, 4, ItemGroup.MACE)   # Ogre Maul
 item_data['7gm'] = ItemTypeData(2, 3, ItemGroup.MACE)   # Thunder Maul
 # SWORD
