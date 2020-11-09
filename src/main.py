@@ -209,10 +209,10 @@ def to_groups(item_list, config):
         for item_set in sets:
             groups.append(sets[item_set])
     if config["SETTINGS"]["UnifyUniques"] == '1':
-        unique_supergroup = []
+        uniques_supergroup = []
         for item_unique in uniques:
-            unique_supergroup.extend(uniques[item_unique])
-        groups.append(unique_supergroup)
+            uniques_supergroup.extend(uniques[item_unique])
+        groups.append(uniques_supergroup)
     else:
         for item_unique in uniques:
             groups.append(uniques[item_unique])
