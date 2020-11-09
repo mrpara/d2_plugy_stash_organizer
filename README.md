@@ -12,7 +12,7 @@ IgnoreFirstXPages = X will ignore the first X pages of the stash. These will not
 
 UnifySets will put different set items on the same page if set to 1. If you want each set to have its own page, keep it at 0.
 
-UnifyUniques will do the same, but for unique items. If set to 0 there will be a page break between different item types (gloves, boots, axes, etc). 
+UnifyUniques will do the same, but for unique items. If set to 0 there will be a page break between different item types (gloves, boots, axes, etc), otherwise different item types may appear on the same page.
 ## I want to change the order of the items in the organized stash, or which items go into which pages!
 I tried to make the script readable and fairly easy to modify. Do as you please with it. Most of the relevant code for sorting item groups is in the to_groups() method in main.py. If you wish to change or add item whole item categories you will also need to edit item_data.py.
 ## I want the script to sort items by properties!
