@@ -120,7 +120,7 @@ def to_groups(item_list, config):
 
     # The groups:
     sets = {}  # Note that sets are the exception here as they contain subgroups (the sets) while the other groups don't
-    uniques = []
+    uniques = {}
     runewords = []
     runes = []
     jewels = []
@@ -162,13 +162,15 @@ def to_groups(item_list, config):
                             ItemGroup.GEM_FLAWLESS, ItemGroup.GEM_PERFECT]:
             gems.append(item)
         elif item.rarity == Rarity.UNIQ:
-            uniques.append(item)
+            if item.code in uniques:
+                uniques[item.code].append(item)
+            else:
+                uniques[item.code] = [item]
         else:  # Catch-all for items which don't fall into one of the other categories and aren't explicitly misc
             misc.append(item)
 
     # Sort each group internally, according to its own criteria. Uniques are sorted by type (helms, gloves, etc) and
     # then by item code (grim helm, winged helm, etc). Jewels are sorted by rarity. Modify this as you see fit.
-    uniques.sort(key=lambda x: (x.group, x.code))
     ubers.sort(key=lambda x: x.code)
     runewords.sort(key=lambda x: (x.group, x.code))
     bases.sort(key=lambda x: (x.group, x.code))
@@ -181,6 +183,8 @@ def to_groups(item_list, config):
     essences.sort(key=lambda x: x.code)
     for item_set in sets:
         sets[item_set].sort(key=lambda x: x.group)
+    for item_unique in uniques:
+        uniques[item_unique].sort(key=lambda x: x.group)
 
     # Finally, add all sorted groups to the groups list. The ordering here is what will determine the actual order in
     # the stash, so modify to your taste.
@@ -204,7 +208,14 @@ def to_groups(item_list, config):
     else:
         for item_set in sets:
             groups.append(sets[item_set])
-    groups.append(uniques)
+    if config["SETTINGS"]["UnifyUniques"] == '1':
+        uniques_supergroup = []
+        for item_unique in uniques:
+            uniques_supergroup.extend(uniques[item_unique])
+        groups.append(uniques_supergroup)
+    else:
+        for item_unique in uniques:
+            groups.append(uniques[item_unique])
     groups.append(misc)
 
     # Finally, remove any empty groups to avoid having empty stash pages
