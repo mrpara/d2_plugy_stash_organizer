@@ -120,7 +120,7 @@ def to_groups(item_list, config):
 
     # The groups:
     sets = {}  # Note that sets are the exception here as they contain subgroups (the sets) while the other groups don't
-    uniques = []
+    uniques = {}
     runewords = []
     runes = []
     jewels = []
@@ -162,13 +162,15 @@ def to_groups(item_list, config):
                             ItemGroup.GEM_FLAWLESS, ItemGroup.GEM_PERFECT]:
             gems.append(item)
         elif item.rarity == Rarity.UNIQ:
-            uniques.append(item)
+            if item.code in uniques:
+                uniques[item.code].append(item)
+            else:
+                uniques[item.code] = [item]
         else:  # Catch-all for items which don't fall into one of the other categories and aren't explicitly misc
             misc.append(item)
 
     # Sort each group internally, according to its own criteria. Uniques are sorted by type (helms, gloves, etc) and
     # then by item code (grim helm, winged helm, etc). Jewels are sorted by rarity. Modify this as you see fit.
-    uniques.sort(key=lambda x: (x.group, x.code))
     ubers.sort(key=lambda x: x.code)
     runewords.sort(key=lambda x: (x.group, x.code))
     bases.sort(key=lambda x: (x.group, x.code))
@@ -181,6 +183,8 @@ def to_groups(item_list, config):
     essences.sort(key=lambda x: x.code)
     for item_set in sets:
         sets[item_set].sort(key=lambda x: x.group)
+    for item_unique in uniques:
+        uniques[item_unique].sort(key=lambda x: x.group)
 
     # Finally, add all sorted groups to the groups list. The ordering here is what will determine the actual order in
     # the stash, so modify to your taste.
@@ -206,25 +210,13 @@ def to_groups(item_list, config):
             groups.append(sets[item_set])
     
     if config["SETTINGS"]["UnifyUniques"] == '1':
-        groups.append(uniques)
+        unique_supergroup = []
+        for item_unique in uniques:
+            unique_supergroup.extend(uniques[item_unique])
+        groups.append(unique_supergroup)
     else:
-        unique_groups = []
-        for unique in uniques:
-            if len(unique_groups) == 0:
-                unique_group = []
-                unique_group.append(unique)
-                unique_groups.append(unique_group)
-            else:
-                prev_group = unique_groups[len(unique_groups) - 1]
-                if unique.code == prev_group[0].code:
-                    unique_groups[len(unique_groups) - 1].append(unique)
-                else:
-                    unique_group = []
-                    unique_group.append(unique)
-                    unique_groups.append(unique_group)
-        for unique_group in unique_groups:
-            groups.append(unique_group)
-    groups.append(misc)
+        for item_unique in uniques:
+            groups.append(uniques[item_unique])
 
     # Finally, remove any empty groups to avoid having empty stash pages
     groups = [group for group in groups if group]
