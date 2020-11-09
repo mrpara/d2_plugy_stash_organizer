@@ -162,10 +162,10 @@ def to_groups(item_list, config):
                             ItemGroup.GEM_FLAWLESS, ItemGroup.GEM_PERFECT]:
             gems.append(item)
         elif item.rarity == Rarity.UNIQ:
-            if item.code in uniques:
-                uniques[item.code].append(item)
+            if item.group in uniques:
+                uniques[item.group].append(item)
             else:
-                uniques[item.code] = [item]
+                uniques[item.group] = [item]
         else:  # Catch-all for items which don't fall into one of the other categories and aren't explicitly misc
             misc.append(item)
 
