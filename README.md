@@ -9,10 +9,6 @@ The Settings.ini file contains some settings for how the script acts.
 BackupStashFile = 1 (default) will make the script back up your old stash file, appending "OLD" to the end. I do not recommend that you change this.
 
 IgnoreFirstXPages = X will ignore the first X pages of the stash. These will not be touched in any way, and the items within them will not be sorted. Useful for having things such as stash pages of skillers, items with specific properties, etc, since the script can only sort by very general properties (item type, rarity, etc).
-
-UnifySets will put different set items on the same page if set to 1. If you want each set to have its own page, keep it at 0.
-
-UnifyUniques will do the same, but for unique items. If set to 0 there will be a page break between different item types (gloves, boots, axes, etc), otherwise different item types may appear on the same page.
 ## I want to change the order of the items in the organized stash, or which items go into which pages!
 I tried to make the script readable and fairly easy to modify. Do as you please with it. Most of the relevant code for sorting item groups is in the to_groups() method in main.py. If you wish to change or add item whole item categories you will also need to edit item_data.py.
 ## I want the script to sort items by properties!

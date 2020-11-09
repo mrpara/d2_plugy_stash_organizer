@@ -217,16 +217,8 @@ def to_groups(item_list, config):
     groups.append(bases)
     groups.append(runewords)
     groups.append(rings_ammies)
-    if config["SETTINGS"]["UnifySets"] == '1':  # For set items, check config. If UnifySets is active then all set items
-        # are unified into one supergroup, meaning different sets can appear on the same stash page. Otherwise, treat
-        # each set as a different group with its own page.
-        append_supergroup_flat(groups, sets)
-    else:
-        append_supergroup(groups, sets)
-    if config["SETTINGS"]["UnifyUniques"] == '1':  # Similarly for uniques
-        append_supergroup_flat(groups, uniques)
-    else:
-        append_supergroup(groups, uniques)
+    append_supergroup(groups, sets)
+    append_supergroup(groups, uniques)
     groups.append(misc)
 
     # Finally, remove any empty groups to avoid having empty stash pages
