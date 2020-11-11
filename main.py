@@ -1,7 +1,7 @@
 import struct
 import re
 from bit_utils import find_next_null, write_bits
-from item_data import ItemGroup, Rarity
+from item_data import ItemGroup, Rarity, GemQuality, get_gem_quality
 from item import Item
 from page import Page
 import tkinter as tk
@@ -180,8 +180,8 @@ def to_groups(item_list, config):
             add_to_group(bases, item)
         elif item.group == ItemGroup.CHARM:
             add_to_group(charms, item)
-        elif item.group in [ItemGroup.GEM_CHIP, ItemGroup.GEM_FLAWED, ItemGroup.GEM_NORM,
-                            ItemGroup.GEM_FLAWLESS, ItemGroup.GEM_PERFECT]:
+        elif item.group in [ItemGroup.GEM_AMETHYST, ItemGroup.GEM_DIAMOND, ItemGroup.GEM_EMERALD,
+                            ItemGroup.GEM_RUBY, ItemGroup.GEM_SAPPHIRE, ItemGroup.GEM_TOPAZ, ItemGroup.GEM_SKULL]:
             add_to_group(gems, item)
         elif item.rarity == Rarity.UNIQ:
             add_to_group(uniques, item, item.group)
@@ -198,7 +198,7 @@ def to_groups(item_list, config):
     runes.sort(key=lambda x: x.code)
     misc.sort(key=lambda x: x.code)
     charms.sort(key=lambda x: (x.code, x.rarity, x.picture_id))
-    gems.sort(key=lambda x: (x.group, x.code))
+    gems.sort(key=lambda x: (x.group, get_gem_quality(x.code)))
     essences.sort(key=lambda x: x.code)
     for item_set in sets:
         sets[item_set].sort(key=lambda x: x.group)

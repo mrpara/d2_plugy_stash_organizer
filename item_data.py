@@ -57,11 +57,13 @@ class ItemGroup(IntEnum):
     UBERKEY = 39
     UBERPART = 40
     ESSENCE = 41
-    GEM_CHIP = 42
-    GEM_FLAWED = 43
-    GEM_NORM = 44
-    GEM_FLAWLESS = 45
-    GEM_PERFECT = 46
+    GEM_AMETHYST = 42
+    GEM_DIAMOND = 43
+    GEM_EMERALD = 44
+    GEM_RUBY = 45
+    GEM_SAPPHIRE = 46
+    GEM_TOPAZ = 47
+    GEM_SKULL = 48
 
 
 class ItemTypeData:
@@ -643,41 +645,65 @@ item_data['hfh'] = ItemTypeData(2, 3, ItemGroup.QUEST)   # Hellforge Hammr
 item_data['ice'] = ItemTypeData(1, 1, ItemGroup.QUEST)   # Malah’s Potion
 item_data['tr2'] = ItemTypeData(2, 2, ItemGroup.QUEST)   # Scroll of Resistance
 # GEMS
-item_data['gcv'] = ItemTypeData(1, 1, ItemGroup.GEM_CHIP)   # Chipped Amethyst
-item_data['gcw'] = ItemTypeData(1, 1, ItemGroup.GEM_CHIP)   # Chipped Diamond
-item_data['gcg'] = ItemTypeData(1, 1, ItemGroup.GEM_CHIP)   # Chipped Emerald
-item_data['gcr'] = ItemTypeData(1, 1, ItemGroup.GEM_CHIP)   # Chipped Ruby
-item_data['gcb'] = ItemTypeData(1, 1, ItemGroup.GEM_CHIP)   # Chipped Saphire
-item_data['skc'] = ItemTypeData(1, 1, ItemGroup.GEM_CHIP)   # Chipped Skull
-item_data['gcy'] = ItemTypeData(1, 1, ItemGroup.GEM_CHIP)   # Chipped Topaz
-item_data['gfv'] = ItemTypeData(1, 1, ItemGroup.GEM_FLAWED)   # Flawed Amethyst
-item_data['gfw'] = ItemTypeData(1, 1, ItemGroup.GEM_FLAWED)   # Flawed Diamond
-item_data['gfg'] = ItemTypeData(1, 1, ItemGroup.GEM_FLAWED)   # Flawed Emerald
-item_data['gfr'] = ItemTypeData(1, 1, ItemGroup.GEM_FLAWED)   # Flawed Ruby
-item_data['gfb'] = ItemTypeData(1, 1, ItemGroup.GEM_FLAWED)   # Flawed Saphire
-item_data['skf'] = ItemTypeData(1, 1, ItemGroup.GEM_FLAWED)   # Flawed Skull
-item_data['gfy'] = ItemTypeData(1, 1, ItemGroup.GEM_FLAWED)   # Flawed Topaz
-item_data['gsv'] = ItemTypeData(1, 1, ItemGroup.GEM_NORM)   # Amethyst
-item_data['gsw'] = ItemTypeData(1, 1, ItemGroup.GEM_NORM)   # Diamond
-item_data['gsg'] = ItemTypeData(1, 1, ItemGroup.GEM_NORM)   # Emerald
-item_data['gsr'] = ItemTypeData(1, 1, ItemGroup.GEM_NORM)   # Ruby
-item_data['gsb'] = ItemTypeData(1, 1, ItemGroup.GEM_NORM)   # Saphire
-item_data['sku'] = ItemTypeData(1, 1, ItemGroup.GEM_NORM)   # Skull
-item_data['gsy'] = ItemTypeData(1, 1, ItemGroup.GEM_NORM)   # Topaz
-item_data['gzv'] = ItemTypeData(1, 1, ItemGroup.GEM_FLAWLESS)   # Flawless Amethyst
-item_data['glw'] = ItemTypeData(1, 1, ItemGroup.GEM_FLAWLESS)   # Flawless Diamond
-item_data['glg'] = ItemTypeData(1, 1, ItemGroup.GEM_FLAWLESS)   # Flawless Emerald
-item_data['glr'] = ItemTypeData(1, 1, ItemGroup.GEM_FLAWLESS)   # Flawless Ruby
-item_data['glb'] = ItemTypeData(1, 1, ItemGroup.GEM_FLAWLESS)   # Flawless Saphire
-item_data['skl'] = ItemTypeData(1, 1, ItemGroup.GEM_FLAWLESS)   # Flawless Skull
-item_data['gly'] = ItemTypeData(1, 1, ItemGroup.GEM_FLAWLESS)   # Flawless Topaz
-item_data['gpw'] = ItemTypeData(1, 1, ItemGroup.GEM_PERFECT)   # Perfect Diamond
-item_data['gpv'] = ItemTypeData(1, 1, ItemGroup.GEM_PERFECT)   # Perfect Amethyst
-item_data['gpb'] = ItemTypeData(1, 1, ItemGroup.GEM_PERFECT)   # Perfect Sapphire
-item_data['gpy'] = ItemTypeData(1, 1, ItemGroup.GEM_PERFECT)   # Perfect Topaz
-item_data['gpr'] = ItemTypeData(1, 1, ItemGroup.GEM_PERFECT)   # Perfect Ruby
-item_data['skz'] = ItemTypeData(1, 1, ItemGroup.GEM_PERFECT)   # Perfect Skull
-item_data['gpg'] = ItemTypeData(1, 1, ItemGroup.GEM_PERFECT)   # Perfect Emerald
+item_data['gcv'] = ItemTypeData(1, 1, ItemGroup.GEM_AMETHYST)   # Chipped Amethyst
+item_data['gfv'] = ItemTypeData(1, 1, ItemGroup.GEM_AMETHYST)   # Flawed Amethyst
+item_data['gsv'] = ItemTypeData(1, 1, ItemGroup.GEM_AMETHYST)   # Amethyst
+item_data['gzv'] = ItemTypeData(1, 1, ItemGroup.GEM_AMETHYST)   # Flawless Amethyst
+item_data['gpv'] = ItemTypeData(1, 1, ItemGroup.GEM_AMETHYST)   # Perfect Amethyst
+item_data['gcw'] = ItemTypeData(1, 1, ItemGroup.GEM_DIAMOND)   # Chipped Diamond
+item_data['gfw'] = ItemTypeData(1, 1, ItemGroup.GEM_DIAMOND)   # Flawed Diamond
+item_data['gsw'] = ItemTypeData(1, 1, ItemGroup.GEM_DIAMOND)   # Diamond
+item_data['glw'] = ItemTypeData(1, 1, ItemGroup.GEM_DIAMOND)   # Flawless Diamond
+item_data['gpw'] = ItemTypeData(1, 1, ItemGroup.GEM_DIAMOND)   # Perfect Diamond
+item_data['gcg'] = ItemTypeData(1, 1, ItemGroup.GEM_EMERALD)   # Chipped Emerald
+item_data['gfg'] = ItemTypeData(1, 1, ItemGroup.GEM_EMERALD)   # Flawed Emerald
+item_data['gsg'] = ItemTypeData(1, 1, ItemGroup.GEM_EMERALD)   # Emerald
+item_data['glg'] = ItemTypeData(1, 1, ItemGroup.GEM_EMERALD)   # Flawless Emerald
+item_data['gpg'] = ItemTypeData(1, 1, ItemGroup.GEM_EMERALD)   # Perfect Emerald
+item_data['gcr'] = ItemTypeData(1, 1, ItemGroup.GEM_RUBY)   # Chipped Ruby
+item_data['gfr'] = ItemTypeData(1, 1, ItemGroup.GEM_RUBY)   # Flawed Ruby
+item_data['gsr'] = ItemTypeData(1, 1, ItemGroup.GEM_RUBY)   # Ruby
+item_data['glr'] = ItemTypeData(1, 1, ItemGroup.GEM_RUBY)   # Flawless Ruby
+item_data['gpr'] = ItemTypeData(1, 1, ItemGroup.GEM_RUBY)   # Perfect Ruby
+item_data['gcb'] = ItemTypeData(1, 1, ItemGroup.GEM_SAPPHIRE)   # Chipped Sapphire
+item_data['gfb'] = ItemTypeData(1, 1, ItemGroup.GEM_SAPPHIRE)   # Flawed Sapphire
+item_data['gsb'] = ItemTypeData(1, 1, ItemGroup.GEM_SAPPHIRE)   # Sapphire
+item_data['glb'] = ItemTypeData(1, 1, ItemGroup.GEM_SAPPHIRE)   # Flawless Sapphire
+item_data['gpb'] = ItemTypeData(1, 1, ItemGroup.GEM_SAPPHIRE)   # Perfect Sapphire
+item_data['skc'] = ItemTypeData(1, 1, ItemGroup.GEM_SKULL)   # Chipped Skull
+item_data['skf'] = ItemTypeData(1, 1, ItemGroup.GEM_SKULL)   # Flawed Skull
+item_data['sku'] = ItemTypeData(1, 1, ItemGroup.GEM_SKULL)   # Skull
+item_data['skl'] = ItemTypeData(1, 1, ItemGroup.GEM_SKULL)   # Flawless Skull
+item_data['skz'] = ItemTypeData(1, 1, ItemGroup.GEM_SKULL)   # Perfect Skull
+item_data['gcy'] = ItemTypeData(1, 1, ItemGroup.GEM_TOPAZ)   # Chipped Topaz
+item_data['gfy'] = ItemTypeData(1, 1, ItemGroup.GEM_TOPAZ)   # Flawed Topaz
+item_data['gsy'] = ItemTypeData(1, 1, ItemGroup.GEM_TOPAZ)   # Topaz
+item_data['gly'] = ItemTypeData(1, 1, ItemGroup.GEM_TOPAZ)   # Flawless Topaz
+item_data['gpy'] = ItemTypeData(1, 1, ItemGroup.GEM_TOPAZ)   # Perfect Topaz
+
+
+class GemQuality(IntEnum):
+    CHIPPED = 1
+    FLAWED = 2
+    NORM = 3
+    FLAWLESS = 4
+    PERFECT = 5
+
+
+def get_gem_quality(item_code):
+    if item_code in ['gcv', 'gcw', 'gcg', 'gcr', 'gcb', 'skc', 'gcy']:
+        return GemQuality.CHIPPED
+    if item_code in ['gfv', 'gfw', 'gfg', 'gfr', 'gfb', 'skf', 'gfy']:
+        return GemQuality.FLAWED
+    if item_code in ['gsv', 'gsw', 'gsg', 'gsr', 'gsb', 'sku', 'gsy']:
+        return GemQuality.NORM
+    if item_code in ['gzv', 'glw', 'glg', 'glr', 'glb', 'skl', 'gly']:
+        return GemQuality.FLAWLESS
+    if item_code in ['gpw', 'gpv', 'gpb', 'gpy', 'gpr', 'skz', 'gpg']:
+        return GemQuality.PERFECT
+    return None
+
+
 # RUNE
 item_data['r01'] = ItemTypeData(1, 1, ItemGroup.RUNE)   # El Rune
 item_data['r02'] = ItemTypeData(1, 1, ItemGroup.RUNE)   # Eld Rune
