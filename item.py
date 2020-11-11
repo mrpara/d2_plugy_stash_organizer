@@ -11,6 +11,7 @@ class Item:
         self.simple = self.is_simple(data)    # Is the item "simple" (contains limited amount of data)
         self.rarity = self.get_rarity(data)   # Item rarity (normal, unique, rare, etc)
         self.set_id = self.get_set_id(data)   # Which set does item belong to?
+        self.picture_id = self.get_picture_id(data)  # For jewels, rings/ammies etc, which picture does the item use
         self.group = get_item_group(self.code)     # What group does the item belong to (gloves, jewel, uber key, etc)
         self.x_size = get_item_size_x(self.code)   # How many horizontal slots does the item take
         self.y_size = get_item_size_y(self.code)   # How many vertical slots does the item take
@@ -62,6 +63,13 @@ class Item:
     def has_multiple_pictures(item):
         # Used to indicate whether an item can have multiple graphics (like rings, amulets, jewels etc)
         return read_bits(item, 154, 1)
+
+    @staticmethod
+    def get_picture_id(item):
+        # Return id of picture for items with multiple pictures
+        if Item.is_simple(item) or not Item.has_multiple_pictures(item):
+            return None
+        return read_bits(item, 155, 3)
 
     @staticmethod
     def is_class_specific(item):
