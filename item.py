@@ -1,5 +1,5 @@
 from bit_utils import read_bits, write_bits
-from item_data import get_item_group, get_item_size_x, get_item_size_y, get_true_set_id, Rarity
+from item_data import get_item_group, get_item_size_x, get_item_size_y, get_true_set_id, get_gem_quality, Rarity
 
 
 # Item class, holding the various relevant item-related attributes and methods
@@ -15,11 +15,19 @@ class Item:
         self.group = get_item_group(self.code)     # What group does the item belong to (gloves, jewel, uber key, etc)
         self.x_size = get_item_size_x(self.code)   # How many horizontal slots does the item take
         self.y_size = get_item_size_y(self.code)   # How many vertical slots does the item take
+        self.gem_quality = get_gem_quality(self.code)  # Quality of gem (none if not a gem)
 
     def set_position(self, x, y):
         # Modify item data and write new stash position
         self.data = write_bits(self.data, 65, 4, x)
         self.data = write_bits(self.data, 69, 4, y)
+
+    def set_code(self, new_code):
+        # Get new 3-letter item code and replace the old one
+        for i in range(3):
+            self.data = write_bits(self.data, 76 + i * 8, 8, ord(new_code[i]))
+        self.data = write_bits(self.data, 100, 8, ord(' '))
+        self.code = new_code
 
     @staticmethod
     def get_position(item):

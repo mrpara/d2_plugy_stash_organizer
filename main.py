@@ -1,7 +1,7 @@
 import struct
 import re
 from bit_utils import find_next_null, write_bits
-from item_data import ItemGroup, Rarity, GemQuality, get_gem_quality
+from item_data import ItemGroup, Rarity, GemQuality, get_pgem_code
 from item import Item
 from page import Page
 import tkinter as tk
@@ -139,6 +139,38 @@ def append_supergroup(groups, supergroup):
         groups.append(supergroup[item])
 
 
+def gem_autocube(gems):
+    # Take list of gems and auto-cube every 3 flawless gems to a perfect gem of the same type
+
+    # Initialize a dictionary with keys [gem_type][gem_quality] with empty lists
+    gems_temp = {}
+    for gem_type in [ItemGroup.GEM_TOPAZ, ItemGroup.GEM_SKULL, ItemGroup.GEM_SAPPHIRE, ItemGroup.GEM_RUBY,
+                     ItemGroup.GEM_EMERALD, ItemGroup.GEM_DIAMOND, ItemGroup.GEM_AMETHYST]:
+        gems_temp[gem_type] = {}
+        for gem_quality in GemQuality:
+            gems_temp[gem_type][gem_quality] = []
+
+    # Insert each gem into the appropriate place in the dictionary
+    for gem in gems:
+        gems_temp[gem.group][gem.gem_quality].append(gem)
+        if gem.gem_quality == GemQuality.FLAWLESS and len(gems_temp[gem.group][gem.gem_quality]) == 3:
+            # If we have 3 flawless gems of the same type then take the first one, change it to a perfect gem,
+            # move it to the perfect gems part of the dict, and then clear the list.
+            fgem = gems_temp[gem.group][gem.gem_quality].pop(0)
+            fgem.set_code(get_pgem_code(fgem.code))
+            gems_temp[gem.group][GemQuality.PERFECT].append(fgem)
+            gems_temp[gem.group][gem.gem_quality] = []
+
+    # Turn the dictionary back into a list and return it
+    gems_cubed = []
+    for gem_type in [ItemGroup.GEM_TOPAZ, ItemGroup.GEM_SKULL, ItemGroup.GEM_SAPPHIRE, ItemGroup.GEM_RUBY,
+                     ItemGroup.GEM_EMERALD, ItemGroup.GEM_DIAMOND, ItemGroup.GEM_AMETHYST]:
+        for gem_quality in GemQuality:
+            gems_cubed.extend(gems_temp[gem_type][gem_quality])
+
+    return gems_cubed
+
+
 def to_groups(item_list, config):
     # Sort the items into groups. Each group is sorted internally with some criteria, and different groups will never
     # be on the same stash page.
@@ -188,6 +220,10 @@ def to_groups(item_list, config):
         else:  # Catch-all for items which don't fall into one of the other categories and aren't explicitly misc
             add_to_group(misc, item)
 
+    # Cube every 3 flawless gems into a pgem
+    if config["SETTINGS"]["AutoCubeFlawlessGems"] == '1':
+        gems = gem_autocube(gems)
+
     # Sort each group internally, according to its own criteria. Uniques are sorted by type (helms, gloves, etc) and
     # then by item code (grim helm, winged helm, etc). Jewels are sorted by rarity. Modify this as you see fit.
     ubers.sort(key=lambda x: x.code)
@@ -198,7 +234,7 @@ def to_groups(item_list, config):
     runes.sort(key=lambda x: x.code)
     misc.sort(key=lambda x: x.code)
     charms.sort(key=lambda x: (x.code, x.rarity, x.picture_id))
-    gems.sort(key=lambda x: (x.group, get_gem_quality(x.code)))
+    gems.sort(key=lambda x: (x.group, x.gem_quality))
     essences.sort(key=lambda x: x.code)
     for item_set in sets:
         sets[item_set].sort(key=lambda x: x.group)

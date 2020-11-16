@@ -704,6 +704,24 @@ def get_gem_quality(item_code):
     return None
 
 
+def get_pgem_code(flawless_code):
+    if flawless_code == 'gzv':
+        return 'gpv'
+    if flawless_code == 'glw':
+        return 'gpw'
+    if flawless_code == 'glg':
+        return 'gpg'
+    if flawless_code == 'glr':
+        return 'gpr'
+    if flawless_code == 'glb':
+        return 'gpb'
+    if flawless_code == 'skl':
+        return 'skz'
+    if flawless_code == 'gly':
+        return 'gpy'
+    return None
+
+
 # RUNE
 item_data['r01'] = ItemTypeData(1, 1, ItemGroup.RUNE)   # El Rune
 item_data['r02'] = ItemTypeData(1, 1, ItemGroup.RUNE)   # Eld Rune
