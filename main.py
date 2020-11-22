@@ -237,9 +237,9 @@ def to_groups(item_list, config):
     gems.sort(key=lambda x: (x.group, x.gem_quality))
     essences.sort(key=lambda x: x.code)
     for item_set in sets:
-        sets[item_set].sort(key=lambda x: x.group)
+        sets[item_set].sort(key=lambda x: (x.group, x.code))
     for item_unique in uniques:
-        uniques[item_unique].sort(key=lambda x: x.group)
+        uniques[item_unique].sort(key=lambda x: (x.group, x.code))
 
     # Finally, add all sorted groups to the groups list. The ordering here is what will determine the actual order in
     # the stash, so modify to your taste.
