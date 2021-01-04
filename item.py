@@ -89,7 +89,7 @@ class Item:
     @staticmethod
     def num_filled_sockets(item):
         # Return number of socketed items in item
-        if Item.is_ear(item):
+        if Item.is_ear(item) or Item.is_simple(item):
             return 0
         return read_bits(item, 108, 3)
 
